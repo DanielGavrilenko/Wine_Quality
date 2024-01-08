@@ -1,0 +1,23 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("../images/bottles.jpg");
+  background-size: cover;
+  opacity: 0.5; /* Adjust the value for the desired level of transparency */
+  z-index: -1; /* Ensure the background is behind the content */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Ensure the content is above the background */
+  padding: 20px;
+  color: #fff; /* Set text color, adjust as needed */
+}
