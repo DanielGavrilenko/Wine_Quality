@@ -35,7 +35,7 @@ def predict_wine_quality(wine_model, data):
         raise ValueError("Invalid data type. Expected WineData.")
 
     prediction = wine_model.predict(data.get_2d_array())
-    return prediction
+    return float(prediction[0])
 # Example usage:
 # model = initialising_model_model(r'F:\Pycharm projects\Wine quality\model_document')
 # prediction = predict_wine_quality(model, your_data)

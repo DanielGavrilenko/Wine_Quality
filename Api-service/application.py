@@ -25,10 +25,10 @@ def analyse_wine():
         prediction = mod.predict_wine_quality(wine_model, input_model_data)
 
         # Save the input_model_data in the database
-        db.save_request(input_model_data)
+        db.save_request(input_model_data, prediction)
 
         # Return the prediction as a JSON response
-        return jsonify({'Prediction: ': float(prediction[0])})
+        return jsonify({'Prediction: ': prediction})
 
     except Exception as e:
         # Handle exceptions and return an error message as a JSON response
@@ -55,5 +55,5 @@ def delete_requests():
 
 if __name__ == '__main__':
     db.init_db()
-    wine_model = mod.init_model('model_document')
+    wine_model = mod.init_model('model-document')
     app.run(debug=False)

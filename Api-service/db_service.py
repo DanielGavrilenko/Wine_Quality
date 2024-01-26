@@ -1,5 +1,9 @@
 import sqlite3
+import json
 
+def bytes_to_json_serializable(bytes_data):
+    # Convert bytes_data to a JSON-serializable format
+     return {"data": list(bytes_data)}
 
 def init_db():
     """
@@ -20,10 +24,11 @@ def init_db():
                         density REAL, 
                         pH REAL, 
                         sulphates REAL, 
-                        alcohol REAL)''')
+                        alcohol REAL,
+                        prediction REAL)''')
 
 
-def save_request(input_model_data):
+def save_request(input_model_data, prediction):
     """
     Save input_model_data to database.
     """
@@ -32,8 +37,8 @@ def save_request(input_model_data):
             INSERT INTO requests 
             (fixed_acidity, volatile_acidity, citric_acid, residual_sugar, 
             chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density, pH, 
-            sulphates, alcohol)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            sulphates, alcohol, prediction)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """,
                      [input_model_data.get_attribute('fixed_acidity'),
                       input_model_data.get_attribute('volatile_acidity'),
@@ -45,9 +50,8 @@ def save_request(input_model_data):
                       input_model_data.get_attribute('density'),
                       input_model_data.get_attribute('pH'),
                       input_model_data.get_attribute('sulphates'),
-                      input_model_data.get_attribute('alcohol')]
+                      input_model_data.get_attribute('alcohol'), prediction]
                      )
-
 
 def load_requests():
     """
@@ -62,7 +66,6 @@ def load_requests():
 
         # Fetch all rows returned by the query
         rows = cursor.fetchall()
-
         # Return or use the fetched data as needed.
         return rows
 
@@ -77,4 +80,4 @@ def delete_requests():
         # Example: Drop a table
         drop_tabmle_query = "DROP TABLE IF EXISTS requests;"
         table_name = 'requests'
-        cursor.execute(f'DELETE FROM {table_nae}')
+        cursor.execute(f'DELETE FROM {table_name}')
