@@ -1,6 +1,6 @@
 This web application employs a neural network to predict the quality of red wine based on user-input parameters, yielding a predicted quality score ranging from 0 to 10.
 
-## Project Overview
+# Project Overview
 
 The project comprises three integral parts:
 

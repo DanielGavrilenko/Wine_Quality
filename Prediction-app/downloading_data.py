@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def read_data():
-    df = pd.read_csv('Wine_quality\winequality-white.csv')
+    df = pd.read_csv('Wine_quality_dataset\winequality-white.csv')
     # conversion data in array format
     arr_buf = df.to_numpy()
     # lenght of data set
